@@ -1,0 +1,20 @@
+{
+  "name": "interviewassist",
+  "version": "1.0.0",
+  "description": "> A better way to prepare for a tech interview",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bbq9234/interviewassist.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bbq9234/interviewassist/issues"
+  },
+  "homepage": "https://github.com/bbq9234/interviewassist#readme"
+}
