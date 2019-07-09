@@ -10,12 +10,24 @@ AWS.config.update({
 
 const s3 = new AWS.S3();
 
-export default multer({
+const upload = multer({
   storage: multerS3({
     s3: s3,
     bucket: "image.profile.user.interviewassist",
     key: function(req, file, cb) {
-      cb(null, Date.now().toString());
+      cb(null, file.originalname);
     }
-  })
+  }),
+  limits: {
+    fileSize: 1000000
+  },
+  fileFilter(req, file, cb) {
+    if (!file.originalname.match(/\.(jpg|jpeg|png)$/)) {
+      return cb(new Error("Please upload an image"));
+    }
+
+    cb(undefined, true);
+  }
 });
+
+module.exports = upload;
