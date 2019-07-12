@@ -30,4 +30,14 @@ const upload = multer({
   }
 });
 
-module.exports = upload;
+const getImage = (bucket, imageId) => {
+  const params = { Bucket: bucket, Key: `${imageId}.png` };
+  return s3.getObject(params, function (err, data) {
+    return data
+  }).promise().then(data => data.Body).catch(e => e)
+}
+
+module.exports = {
+  upload,
+  getImage
+};
