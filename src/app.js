@@ -7,7 +7,7 @@ const topicRouter = require("./routes/topic");
 
 const app = express();
 
-// app.use(require('connect-history-api-fallback')());
+app.use(require("connect-history-api-fallback")());
 
 // Define paths for Express config
 const publicDirectoryPath = path.join(__dirname, "../public");
@@ -18,7 +18,7 @@ app.use(express.json());
 app.use(express.static(publicDirectoryPath));
 
 app.use(pageRouter);
-app.use(userRouter);
-app.use(topicRouter);
+app.use("/api", userRouter);
+app.use("/api", topicRouter);
 
 module.exports = app;
