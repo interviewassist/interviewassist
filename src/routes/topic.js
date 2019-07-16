@@ -33,7 +33,9 @@ router.post("/topics", async (req, res) => {
 
 router.get("/topics/thumbnail/:imageId", async (req, res) => {
     const data = await getImage("image.topic.interviewassist", req.params.imageId)
-    res.status(200).send(Buffer.from(data).toString('base64'))
+    res.status(200).send(data.toString('base64'))
+    // res.setHeader("Content-Type", "image/png")
+    // res.send(data)
 })
 
 module.exports = router;

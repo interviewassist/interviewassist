@@ -1,7 +1,6 @@
 <!DOCTYPE html><html><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=google-signin-client_id content=864469301619-lmtu88dcg1jm5ta4niqmddaiq8ora8k7.apps.googleusercontent.com><title>interviewassist</title><script>// for Google auth
     function onSignIn(googleUser) {
       var id_token = googleUser.getAuthResponse().id_token;
-      console.log(id_token);
       fetch("/api/auth/google", {
         method: "POST",
         headers: {
@@ -20,4 +19,4 @@
         .catch(err => {
           console.log(err);
         });
-    }</script><link href=/static/css/app.2c467628e9b409c041eb8ebe4b32e35f.css rel=stylesheet></head><body><div id=app></div><script type=text/javascript src=/static/js/manifest.2ae2e69a05c33dfc65f8.js></script><script type=text/javascript src=/static/js/vendor.bf87fc8dfd0c19671cbc.js></script><script type=text/javascript src=/static/js/app.d1ae0683726af35a8f37.js></script></body></html>
+    }</script><link href=/static/css/app.ef267ad86d725f7685a998aba9a1c3c1.css rel=stylesheet></head><body><div id=app></div><script type=text/javascript src=/static/js/manifest.2ae2e69a05c33dfc65f8.js></script><script type=text/javascript src=/static/js/vendor.bf87fc8dfd0c19671cbc.js></script><script type=text/javascript src=/static/js/app.32da7f42b05953546555.js></script></body></html>
