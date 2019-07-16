@@ -14,7 +14,7 @@ const upload = multer({
   storage: multerS3({
     s3: s3,
     bucket: "image.profile.user.interviewassist",
-    key: function(req, file, cb) {
+    key: function (req, file, cb) {
       cb(null, file.originalname);
     }
   }),
@@ -30,4 +30,14 @@ const upload = multer({
   }
 });
 
-module.exports = upload;
+const getImage = async (bucket, imageId) => {
+  const params = { Bucket: bucket, Key: `${imageId}.png` };
+  const data = await s3.getObject(params).promise()
+
+  return data.Body;
+}
+
+module.exports = {
+  upload,
+  getImage
+};

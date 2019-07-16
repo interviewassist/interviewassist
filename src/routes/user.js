@@ -1,5 +1,5 @@
 const express = require("express");
-const upload = require("../utils/image-uploader");
+const { upload } = require("../utils/image-util");
 const User = require("../models/user");
 const auth = require("../middleware/auth");
 const router = new express.Router();
@@ -90,5 +90,9 @@ router.delete("/users/me", auth, async (req, res) => {
 router.post("/users/me/avatar", auth, upload.single("avatar"), (req, res) => {
   res.send("Successfully uploaded profile image");
 });
+
+router.get("/topic", (req, res) => {
+  res.send("test topic")
+})
 
 module.exports = router;
