@@ -20,8 +20,8 @@ const problemSchema = new mongoose.Schema(
     tags: [
       {
         tag: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: "Topic"
+          type: String,
+          trim: true
         }
       }
     ],
