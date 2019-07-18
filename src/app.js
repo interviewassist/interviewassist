@@ -9,6 +9,7 @@ const userRouter = require("./routes/user");
 const pageRouter = require("./routes/page");
 const topicRouter = require("./routes/topic");
 const authRouter = require("./routes/auth");
+const problemRouter = require("./routes/problem");
 
 const app = express();
 
@@ -39,7 +40,7 @@ const swaggerSpec = swaggerJSDoc(options);
 
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerSpec));
 
-// app.use(require("connect-history-api-fallback")());
+// app.use(require("connect-history-api-fallback")()); // comment it when testing dev server
 
 // Define paths for Express config
 const publicDirectoryPath = path.join(__dirname, "../public");
@@ -53,5 +54,6 @@ app.use(pageRouter);
 app.use("/api", userRouter);
 app.use("/api", topicRouter);
 app.use("/api", authRouter);
+app.use("/api", problemRouter);
 
 module.exports = app;
