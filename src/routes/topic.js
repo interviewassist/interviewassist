@@ -4,7 +4,7 @@ const Topic = require("../models/topic");
 
 const router = new express.Router();
 
-router.get("/topics", auth, async (req, res) => {
+router.get("/topics", async (req, res) => {
   try {
     const topics = await Topic.find({});
 
