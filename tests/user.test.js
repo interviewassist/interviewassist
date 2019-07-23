@@ -7,7 +7,7 @@ beforeEach(setupDatabase);
 
 test("Should signup a new user", async () => {
   const response = await request(app)
-    .post("/users")
+    .post("/api/users")
     .send({
       name: "Adam",
       email: "adam77@example.com",
@@ -32,7 +32,7 @@ test("Should signup a new user", async () => {
 
 test("Should login existing user", async () => {
   const response = await request(app)
-    .post("/users/login")
+    .post("/api/users/login")
     .send(({ email, password } = userOne))
     .expect(200);
   const user = await User.findById(response.body.user._id);
@@ -42,7 +42,7 @@ test("Should login existing user", async () => {
 
 test("Should not login nonexistent user", async () => {
   await request(app)
-    .post("/users/login")
+    .post("/api/users/login")
     .send({
       email: "Notexist@example.com",
       password: "1234"
@@ -52,7 +52,7 @@ test("Should not login nonexistent user", async () => {
 
 test("Should get profile for user", async () => {
   await request(app)
-    .get("/users/me")
+    .get("/api/users/me")
     .set("Authorization", `Bearer ${userOne.tokens[0].token}`)
     .send()
     .expect(200);
@@ -60,14 +60,14 @@ test("Should get profile for user", async () => {
 
 test("Should not get profile for unauthenticated user", async () => {
   await request(app)
-    .get("/users/me")
+    .get("/api/users/me")
     .send()
     .expect(401);
 });
 
 test("should delete account for user", async () => {
   await request(app)
-    .delete("/users/me")
+    .delete("/api/users/me")
     .set("Authorization", `Bearer ${userOne.tokens[0].token}`)
     .send()
     .expect(200);
@@ -78,14 +78,14 @@ test("should delete account for user", async () => {
 
 test("should not delete account for unauthenticated user", async () => {
   await request(app)
-    .delete("/users/me")
+    .delete("/api/users/me")
     .send()
     .expect(401);
 });
 
 test("Should update valid user field", async () => {
   await request(app)
-    .patch("/users/me")
+    .patch("/api/users/me")
     .set("Authorization", `Bearer ${userOne.tokens[0].token}`)
     .send({
       name: "Michael"
@@ -98,7 +98,7 @@ test("Should update valid user field", async () => {
 
 test("Should not update invalid user fields", async () => {
   await request(app)
-    .patch("/users/me")
+    .patch("/api/users/me")
     .set("Authorization", `Bearer ${userOne.tokens[0].token}`)
     .send({
       location: "Seoul"

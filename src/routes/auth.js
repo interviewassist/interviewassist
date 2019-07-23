@@ -1,14 +1,17 @@
 const express = require("express");
-const { verify } = require("../utils/auth");
+const { verifyIdToken, handleSocialLoginedUser } = require("../utils/auth");
 const router = new express.Router();
 
-router.post("/auth/google", async (req, res) => {
+router.post("/auth", async (req, res) => {
   const { id_token } = req.body;
 
-  const user = await verify(id_token).catch(console.err);
+  const user = await verifyIdToken(id_token).catch(console.err);
+  const result = await handleSocialLoginedUser(user);
 
-  res.cookie("Authorization", `Bearer ${user.loginToken}`);
-  res.send(user);
+  res.cookie("Authorization", `Bearer ${result.loginToken}`, {
+    encode: String
+  });
+  res.status(200).send(result);
 });
 
 module.exports = router;
